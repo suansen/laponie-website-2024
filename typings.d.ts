@@ -45,10 +45,17 @@ interface LocaleBlockContent {
   cn: TypedObject[] | TypedObject;
 }
 
-interface PageBuilderType {
-  _type: "page";
-  pageBuilder: TypedObject[] | TypedObject;
+interface ButtonType {
+  _type: "button";
+  en: string;
+  cn: string;
+  link: string;
 }
+
+// interface PageBuilderType {
+//   _type: "page";
+//   pageBuilder: TypedObject[] | TypedObject;
+// }
 
 export interface HeroRoundedType extends SanityBody {
   title: string;

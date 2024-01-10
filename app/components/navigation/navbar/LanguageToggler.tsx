@@ -1,20 +1,20 @@
-import React from "react"
+import React from "react";
 
-type Props = { languageSelected: string; setLanguageSelected: any }
+type Props = { languageSelected: string; setLanguageSelected: any };
 
 export default function LanguageToggler({
   languageSelected,
-  setLanguageSelected
+  setLanguageSelected,
 }: Props) {
   return (
-    <div className="hidden md:flex justify-between items-center bg-tw-primary-light rounded-l-full rounded-r-full px-2 h-8 w-18 relative">
+    <div className="w-18 relative hidden h-8 items-center justify-between rounded-l-full rounded-r-full bg-tw-primary-light px-2 md:flex">
       <div
-        className={`absolute bg-tw-primary-pink w-7 h-7 rounded-full transition-all duration-150 left-2 ${
+        className={`absolute left-2 h-7 w-7 rounded-full bg-tw-primary-pink transition-all duration-150 ${
           languageSelected === "en" ? "" : " translate-x-7"
         }`}
       />
       <div
-        className={`w-7 h-7 cursor-pointer z-30 text-center rounded-full ${
+        className={`z-30 h-7 w-7 cursor-pointer rounded-full text-center ${
           languageSelected === "cn" ? "text-tw-text-black" : "text-white"
         }`}
         onClick={() => setLanguageSelected("en")}
@@ -23,7 +23,7 @@ export default function LanguageToggler({
       </div>
 
       <div
-        className={`w-7 h-7 cursor-pointer z-30 text-center rounded-full ${
+        className={`z-30 h-7 w-7 cursor-pointer rounded-full text-center ${
           languageSelected === "en" ? "text-tw-text-black" : "text-white"
         }`}
         onClick={() => setLanguageSelected("cn")}
@@ -31,5 +31,5 @@ export default function LanguageToggler({
         cn
       </div>
     </div>
-  )
+  );
 }

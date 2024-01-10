@@ -3,6 +3,8 @@ import { PageType } from "@/typings";
 import { sanityClient } from "@/utils/sanity/client";
 import { groq } from "next-sanity";
 import PageTemplate from "../components/pageTemplate";
+import "mapbox-gl/dist/mapbox-gl.css";
+// import MapBoxMap from "../components/page-slices/map/MapBoxMap";
 
 const queries = {
   pages: groq`*[_type == "page" && slug.current=="contact-us"]{
@@ -13,9 +15,10 @@ const queries = {
 export default async function AboutUs() {
   const pages = await sanityClient.fetch<PageType>(queries.pages);
   return (
-    <main className="mt-[80px] flex min-h-screen flex-col items-center px-4 md:px-0">
-      {JSON.stringify(pages)}
-      {pages?.pageBuilder && <PageTemplate blocks={pages?.pageBuilder} />}
-    </main>
+    <>
+      <main className="flex min-h-screen flex-col items-center px-4 md:px-0">
+        {pages?.pageBuilder && <PageTemplate blocks={pages?.pageBuilder} />}
+      </main>
+    </>
   );
 }

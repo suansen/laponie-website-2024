@@ -16,21 +16,8 @@ export default async function Home() {
   const pages = await sanityClient.fetch<PageType>(queries.pages);
 
   return (
-    <main className="mt-[80px] flex flex-col items-center justify-between px-4 md:px-16">
-      {/* <div className="max-w-screen">{JSON.stringify(pages)}</div> */}
+    <main className="mt-[1rem] flex flex-col items-center justify-between px-4 md:mt-[80px] md:px-16">
       <PageTemplate blocks={pages.pageBuilder} />
-      {/* <div className="group mx-auto flex h-screen w-screen flex-wrap gap-2 transition duration-300 ease-in">
-        <div className="h-[400px] w-[400px] bg-red-100 transition duration-300 ease-in group-hover:w-[800px]">
-          1
-        </div>
-        <div className="h-[400px] w-[400px] bg-red-200"></div>
-        <div className="h-[400px] w-[400px] bg-red-300"></div>
-        <div className="h-[400px] w-[400px] bg-red-400"></div>
-        <div className="h-[400px] w-[400px] bg-red-500"></div>
-        <div className="h-[400px] w-[400px] bg-red-600"></div>
-        <div className="h-[400px] w-[400px] bg-red-700"></div>
-        <div className="h-[400px] w-[400px] bg-red-800"></div>
-      </div> */}
     </main>
   );
 }

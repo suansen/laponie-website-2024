@@ -1,30 +1,30 @@
-"use client"
-import React, { createContext, useContext, useState } from "react"
+"use client";
+import React, { createContext, useContext, useState } from "react";
 
 export type LanguageContent = {
-  languageSelected: string
-  setLanguageSelected: React.Dispatch<React.SetStateAction<string>>
-}
+  languageSelected: string;
+  setLanguageSelected: React.Dispatch<React.SetStateAction<string>>;
+};
 
 const LanguageContext = createContext<LanguageContent>({
   languageSelected: "en", // set a default value
-  setLanguageSelected: () => {}
-})
+  setLanguageSelected: () => {},
+});
 
 export function LanguageContextWrapper({
-  children
+  children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const [languageSelected, setLanguageSelected] = useState<string>("en")
+  const [languageSelected, setLanguageSelected] = useState<string>("en");
 
   return (
     <LanguageContext.Provider value={{ languageSelected, setLanguageSelected }}>
       {children}
     </LanguageContext.Provider>
-  )
+  );
 }
 
 export function useLanguageContext() {
-  return useContext(LanguageContext)
+  return useContext(LanguageContext);
 }

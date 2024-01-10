@@ -3,7 +3,7 @@ import React from "react";
 
 function Loading() {
   return (
-    <section className="flex h-[calc(100vh-80px)] w-[calc(100vw-8px)] items-center justify-center">
+    <section className="flex h-[calc(100vh-80px)] w-full items-center justify-center">
       <div className="flex flex-col items-center justify-center space-y-4 overflow-visible">
         {/* <div>
           <Spinner size="lg" />

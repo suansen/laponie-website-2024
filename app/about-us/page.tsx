@@ -14,7 +14,7 @@ export default async function AboutUs() {
   const pages = await sanityClient.fetch<PageType>(queries.pages);
 
   return (
-    <main className="mt-[80px] flex min-h-screen flex-col items-center px-4 md:px-0">
+    <main className="mt-[1rem] flex min-h-screen flex-col items-center px-4 md:mt-[80px] md:px-0">
       <PageTemplate blocks={pages.pageBuilder} />
     </main>
   );

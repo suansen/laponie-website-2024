@@ -12,7 +12,7 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-import ArrowUpRightIcon from "@/app/icons/ArrowUpRight";
+import ArrowUpRightIcon from "../../icons/ArrowUpRight";
 
 type Props = {
   item: Highlight;

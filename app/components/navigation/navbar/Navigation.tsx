@@ -1,19 +1,10 @@
-"use client"
-import React from "react"
-import { usePathname } from "next/navigation"
+"use client";
+import React from "react";
+import { usePathname } from "next/navigation";
 
-import LanguageToggler from "./LanguageToggler"
-import LaponieLogo from "./LaponieLogo"
-import { useLanguageContext } from "@/app/context/LanguageContext"
-import {
-  ChevronDown,
-  Lock,
-  Activity,
-  Flash,
-  Server,
-  TagUser,
-  Scale
-} from "./Icons."
+import LanguageToggler from "./LanguageToggler";
+import LaponieLogo from "./LaponieLogo";
+import { useLanguageContext } from "@/app/context/LanguageContext";
 
 import {
   Navbar,
@@ -24,47 +15,37 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Dropdown,
-  DropdownItem,
-  Button,
-  DropdownTrigger,
-  DropdownMenu
-} from "@nextui-org/react"
+} from "@nextui-org/react";
+import { LocaleString } from "@/typings";
+import NavigationBrand from "./NavigationBrand";
 
-function Navigation() {
-  const pathname = usePathname()
+type navItem = {
+  _key: string;
+  title: LocaleString;
+  _type: "navItem";
+  link: string;
+};
 
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out"
-  ]
+type navBrand = {
+  _key: string;
+  title: LocaleString;
+  _type: "navBrands";
+  brand: { slug: { current: string; _type: string }; name: string }[];
+};
 
-  const icons = {
-    chevron: <ChevronDown fill="currentColor" size={16} />,
-    scale: <Scale className="text-warning" fill="currentColor" size={30} />,
-    lock: <Lock className="text-success" fill="currentColor" size={30} />,
-    activity: (
-      <Activity className="text-secondary" fill="currentColor" size={30} />
-    ),
-    flash: <Flash className="text-primary" fill="currentColor" size={30} />,
-    server: <Server className="text-success" fill="currentColor" size={30} />,
-    user: <TagUser className="text-danger" fill="currentColor" size={30} />
-  }
+type Props = {
+  navItems: navBrand[] | navItem[];
+};
 
-  const { languageSelected, setLanguageSelected } = useLanguageContext()
+function Navigation({ navItems }: Props) {
+  const pathname = usePathname();
+
+  const { languageSelected, setLanguageSelected } = useLanguageContext();
   // const [isOpen, setIsOpen] = useState(false)
 
   return (
     <Navbar
-      className={`bg-tw-primary/80 w-full`}
+      className={`w-full bg-tw-primary/80`}
       classNames={{
         item: [
           "flex",
@@ -83,15 +64,15 @@ function Navigation() {
           "data-[active=true]:after:rounded-[2px]",
           "data-[active=true]:after:bg-tw-pink",
           "data-[active=true]:after:rounded-r-xl",
-          "data-[active=true]:after:rounded-l-xl"
-        ]
+          "data-[active=true]:after:rounded-l-xl",
+        ],
       }}
     >
       <NavbarContent className="md:hidden" justify="start">
         <NavbarMenuToggle />
       </NavbarContent>
 
-      <NavbarContent className="md:hidden pr-3" justify="center">
+      <NavbarContent className="pr-3 md:hidden" justify="center">
         <NavbarBrand>
           <LaponieLogo />
         </NavbarBrand>
@@ -100,95 +81,36 @@ function Navigation() {
       <NavbarContent className="md:hidden" justify="end"></NavbarContent>
 
       <NavbarContent
-        className="md:hidden pr-3"
+        className="pr-3 md:hidden"
         justify="center"
       ></NavbarContent>
 
-      <NavbarContent className="hidden md:flex gap-4" justify="end">
+      <NavbarContent className="hidden gap-4 md:flex" justify="end">
         <NavbarBrand>
           <LaponieLogo />
         </NavbarBrand>
-        <NavbarItem isActive={pathname === "/"}>
-          <Link className="uppercase font-normal" color="foreground" href="/">
-            Home
-          </Link>
-        </NavbarItem>
-        <Dropdown>
-          <NavbarItem>
-            <DropdownTrigger>
-              <Button
-                disableRipple
-                className="p-0 bg-transparent data-[hover=true]:bg-transparent uppercase text-md"
-                endContent={icons.chevron}
-                radius="sm"
-                variant="light"
-              >
-                Brands
-              </Button>
-            </DropdownTrigger>
-          </NavbarItem>
-          <DropdownMenu
-            aria-label="Brands"
-            className="w-[340px]"
-            itemClasses={{
-              base: "gap-4"
-            }}
-          >
-            <DropdownItem
-              key="autoscaling"
-              description="ACME scales apps to meet user demand, automagically, based on load."
-              startContent={icons.scale}
-            >
-              Autoscaling
-            </DropdownItem>
-            <DropdownItem
-              key="usage_metrics"
-              description="Real-time metrics to debug issues. Slow query added? We’ll show you exactly where."
-              startContent={icons.activity}
-            >
-              Usage Metrics
-            </DropdownItem>
-            <DropdownItem
-              key="production_ready"
-              description="ACME runs on ACME, join us and others serving requests at web scale."
-              startContent={icons.flash}
-            >
-              Production Ready
-            </DropdownItem>
-            <DropdownItem
-              key="99_uptime"
-              description="Applications stay on the grid with high availability and high uptime guarantees."
-              startContent={icons.server}
-            >
-              +99% Uptime
-            </DropdownItem>
-            <DropdownItem
-              key="supreme_support"
-              description="Overcome any challenge with a supporting team ready to respond."
-              startContent={icons.user}
-            >
-              +Supreme Support
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-        <NavbarItem isActive={pathname === "/about-us"}>
-          <Link
-            className="uppercase font-normal"
-            href="/about-us"
-            color="foreground"
-          >
-            About Us
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive={pathname === "/contact-us"}>
-          <Link
-            className="uppercase font-normal"
-            color="foreground"
-            href="/contact-us"
-          >
-            Contact Us
-          </Link>
-        </NavbarItem>
+        {navItems.map((item, index) => (
+          <React.Fragment key={index}>
+            {item._type === "navItem" ? (
+              <NavbarItem isActive={pathname === item.link}>
+                <Link
+                  className="font-normal uppercase"
+                  color="foreground"
+                  href={item.link}
+                >
+                  {languageSelected === "en" ? item.title.en : item.title.cn}
+                </Link>
+              </NavbarItem>
+            ) : (
+              <>
+                <NavigationBrand
+                  languageSelected={languageSelected}
+                  item={item}
+                />
+              </>
+            )}
+          </React.Fragment>
+        ))}
         <NavbarItem className="hidden sm:flex">
           <LanguageToggler
             languageSelected={languageSelected}
@@ -197,28 +119,50 @@ function Navigation() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className="bg-tw-primary/80">
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
-              color={
-                index === 2
-                  ? "warning"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              href="#"
-              size="lg"
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
+      <NavbarMenu className="pt-8r bg-tw-primary/80">
+        {navItems.map((item, index) => (
+          <React.Fragment key={index}>
+            {item._type === "navItem" ? (
+              <NavbarMenuItem key={`${item.title.en}-${index}`}>
+                <Link
+                  className="w-full  uppercase text-tw-black"
+                  href={item.link}
+                  size="lg"
+                >
+                  {languageSelected === "en"
+                    ? item.title.en
+                    : item.title.cn || item.title.en}
+                </Link>
+              </NavbarMenuItem>
+            ) : (
+              <div>
+                <div className="uppercase underline underline-offset-4">
+                  {languageSelected === "en"
+                    ? item.title.en
+                    : item.title.cn || item.title.en}
+                </div>
+                <div className=" space-y-2 py-2">
+                  {item.brand.map((brandItem, index) => (
+                    <NavbarMenuItem
+                      key={`${brandItem.name}${index}`}
+                      className="pl-4"
+                    >
+                      <Link
+                        href={brandItem.slug.current}
+                        className="uppercase text-tw-black/80"
+                      >
+                        {brandItem.name}
+                      </Link>
+                    </NavbarMenuItem>
+                  ))}
+                </div>
+              </div>
+            )}
+          </React.Fragment>
         ))}
       </NavbarMenu>
     </Navbar>
-  )
+  );
 }
 
-export default Navigation
+export default Navigation;
