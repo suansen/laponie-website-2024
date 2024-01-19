@@ -144,14 +144,14 @@ function Navigation({ navItems }: Props) {
                 <div className=" space-y-2 py-2">
                   {item.brand.map((brandItem, index) => (
                     <NavbarMenuItem
-                      key={`${brandItem.name}${index}`}
+                      key={`${brandItem?.name}${index}`}
                       className="pl-4"
                     >
                       <Link
                         href={`/brands/${brandItem.slug.current}`}
                         className="uppercase text-tw-black/80"
                       >
-                        {brandItem.name}
+                        {brandItem?.name}
                       </Link>
                     </NavbarMenuItem>
                   ))}

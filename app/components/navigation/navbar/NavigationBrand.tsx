@@ -68,13 +68,13 @@ const NavigationBrand = ({ languageSelected, item }: Props) => {
           <DropdownItem
             // showDivider={true}
             href={`/brands/${brandItem.slug.current}`}
-            key={brandItem.name}
+            key={brandItem?.name}
             // description="ACME scales apps to meet user demand, automagically, based on load."
             // startContent={icons.scale}
             className="group text-center"
           >
             <div className="h-full w-full py-4  uppercase group-hover:text-black/80">
-              {brandItem.name}
+              {brandItem?.name}
             </div>
           </DropdownItem>
         ))}

@@ -30,7 +30,7 @@ const CardsForBrand = ({ brands, languageSelected, buttonText }: Props) => {
             src={urlFor(brand.mainImage).width(640).height(640).url()}
             width={640}
             height={640}
-            alt={`${brand.name}'s brand image`}
+            alt={`${brand?.name}'s brand image`}
           />
           <div
             className={`absolute  ${
@@ -41,7 +41,7 @@ const CardsForBrand = ({ brands, languageSelected, buttonText }: Props) => {
           />
 
           <h3 className="z-20 pt-20 text-center text-h4 leading-none  text-white drop-shadow-lg transition-all duration-300 ease-in group-hover:translate-y-0 md:translate-y-96 md:pt-20 md:text-h3">
-            {brand.name}
+            {brand?.name}
           </h3>
           <div className="z-10 hidden max-w-sm space-y-4 font-secondary text-xs leading-normal transition-all duration-300 ease-in group-hover:translate-y-0 group-hover:opacity-100 md:block md:translate-y-20 md:text-p md:opacity-0">
             {languageSelected === "en" ? (

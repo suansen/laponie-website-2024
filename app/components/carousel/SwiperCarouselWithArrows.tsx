@@ -66,7 +66,7 @@ function SwiperCarouselWithArrows({ languageSelected, products }: Props) {
         className="h-full w-80 md:w-full"
       >
         {products?.map((item: Product, i: number) => (
-          <Fragment key={`${item.name}${i}`}>
+          <Fragment key={`${item?.name}${i}`}>
             <SwiperSlide className="flex min-h-[360px] w-full max-w-[320px] cursor-pointer items-center justify-center">
               {/* image */}
               <ProductCard item={item} languageSelected={languageSelected} />

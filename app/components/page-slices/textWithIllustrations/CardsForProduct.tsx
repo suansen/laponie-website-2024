@@ -52,7 +52,7 @@ const CardsForProduct = ({
       <div className="hidden w-full flex-wrap justify-center gap-4 md:flex md:gap-8">
         {products.map((product, index) => (
           <ProductCard
-            key={`${product.name}${index}`}
+            key={`${product?.name}${index}`}
             item={product}
             languageSelected={languageSelected}
           />

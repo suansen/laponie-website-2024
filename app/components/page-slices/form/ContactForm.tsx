@@ -59,7 +59,7 @@ const ContactForm = ({ languageSelected }: Props) => {
           name="name"
           autoComplete="name"
           isRequired={true}
-          value={formData.name}
+          value={formData?.name}
           onChange={(e: React.FormEvent<HTMLInputElement>) =>
             setFormData({ ...formData, name: e.currentTarget.value })
           }

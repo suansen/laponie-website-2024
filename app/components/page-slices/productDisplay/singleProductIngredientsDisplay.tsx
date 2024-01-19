@@ -23,7 +23,7 @@ const SingleProductIngredientsDisplay = ({ ingredients, heading }: Props) => {
         {ingredients?.map((ingredient, i) => (
           <AccordionItem
             key={i}
-            aria-label={ingredient.name}
+            aria-label={ingredient?.name}
             title={<div className="text-sh1">{ingredient?.name}</div>}
           >
             {/* <div className="flex h-6 w-6 items-center justify-center rounded-full border border-tw-text-black text-p text-tw-text-black opacity-80">
