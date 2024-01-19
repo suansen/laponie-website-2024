@@ -46,7 +46,7 @@ export default function HighlightCard({ item, languageSelected }: Props) {
         {languageSelected === "en" ? item.title.en : item.title.cn}
       </h3>
 
-      <p className=" z-10 line-clamp-7 min-h-[120px] text-left font-secondary text-[1.25rem] text-tw-white-off opacity-0 transition-opacity duration-300 ease-in group-hover:opacity-100">
+      <p className="z-10 line-clamp-7 min-h-[120px] border-b-1 border-tw-white-off pb-4 text-left font-secondary text-[1] text-tw-white-off opacity-0 transition-opacity duration-300 ease-in group-hover:opacity-100">
         {languageSelected === "en" ? item.description.en : item.description.cn}
       </p>
       <Button
@@ -102,7 +102,11 @@ export default function HighlightCard({ item, languageSelected }: Props) {
                   className="max-h-[448px] w-full rounded-xl bg-tw-pink object-contain "
                   width={576}
                   height={448}
-                  src={urlFor(item.mainImage).width(576).height(448).url()}
+                  src={urlFor(item.mainImage)
+                    .width(576)
+                    .auto("format")
+                    .fit("max")
+                    .url()}
                   alt={`Image of ${
                     languageSelected === "en"
                       ? item.title.en
@@ -115,7 +119,7 @@ export default function HighlightCard({ item, languageSelected }: Props) {
                       ? item.title.en
                       : item.title.cn || item.title.en}
                   </div>
-                  <p className="max-w-md  pt-4 text-p text-black/80">
+                  <p className="max-w-md pt-4 font-secondary text-black/80">
                     {languageSelected === "en"
                       ? item.description.en
                       : item.description.cn || item.description.en}

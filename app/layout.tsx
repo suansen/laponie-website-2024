@@ -9,6 +9,8 @@ import React, { Suspense } from "react";
 import Loading from "./loading";
 import { groq } from "next-sanity";
 import { sanityClient } from "@/utils/sanity/client";
+import Footer from "./components/navigation/footer/Footer";
+// import { cn } from "~/lib/utils";
 
 const montserrat = Montserrat({
   weight: ["300", "400", "500", "700"],
@@ -43,8 +45,12 @@ const tuesday_night = localFont({
 });
 
 const queries = {
-  pages: groq`*[_type == "nav"]{
-  title, _type, navBuilder[]{..., brand[]->{slug, name}}
+  navigation: groq`*[_type == "nav"]{
+  title,
+  _type,
+  navBuilder[]{..., brand[]->{slug, name}},
+
+  footerBuilder[]{title, navItem}
 }[0]`,
 };
 
@@ -58,20 +64,20 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const navItems = await sanityClient.fetch(queries.pages);
-  // console.log(navItems);
+  const navItems = await sanityClient.fetch(queries.navigation);
 
   return (
     <html
       lang="en"
-      className={`light marker:${montserrat.variable} ${bellefair.variable} ${long_cang.variable}  ${laponie.variable} ${tuesday_night.variable}`}
+      className={`light ${montserrat.variable} ${bellefair.variable} ${long_cang.variable}  ${laponie.variable} ${tuesday_night.variable}`}
     >
-      <body>
+      <body className=" min-h-screen bg-tw-primary-light">
         <Providers>
           <Suspense fallback={<Loading />}>
             <LanguageContextWrapper>
               <Navigation navItems={navItems.navBuilder} />
               {children}
+              <Footer footerBuilder={navItems.footerBuilder} />
             </LanguageContextWrapper>
           </Suspense>
         </Providers>

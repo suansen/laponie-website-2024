@@ -69,6 +69,13 @@ export interface PageType extends SanityBody {
   _type: "page";
   pageBuilder: TypedObject[] | TypedObject;
 }
+
+export interface ProductsPageType extends SanityBody {
+  title: string;
+  _type: "page";
+  pageBuilder: TypedObject[] | TypedObject;
+  productsPageBuilder: TypedObject[] | TypedObject;
+}
 export interface TeamMember extends SanityBody {
   _type: "teamMember";
   teamMemberName: LocaleString;
@@ -76,15 +83,15 @@ export interface TeamMember extends SanityBody {
   mainImage: Image;
 }
 
-// export interface Review extends SanityBody {
-//   _type: "review"
-//   brand: { name: string; slug: Slug }
-//   customerImage: Image
-//   brand: Ref
-//   name: string
-//   rating: number
-//   customerReview: string
-// }
+export interface Review extends SanityBody {
+  _type: "review";
+  brand: { name: string; slug: Slug };
+  customerImage: Image;
+  brand: Ref;
+  name: string;
+  rating: number;
+  customerReview: string;
+}
 
 export interface Highlight extends SanityBody {
   _type: "highlight";
@@ -107,6 +114,15 @@ export interface Brand extends SanityBody {
   slug: Slug;
   name: string;
   description: LocaleText;
+  productCategories?: { name: string }[];
+}
+
+export interface CardLink extends SanityBody {
+  _type: "cardLink";
+  image: Image;
+  heading: LocaleString;
+  description: LocaleString;
+  link: ButtonType;
   productCategories?: { name: string }[];
 }
 
@@ -181,7 +197,7 @@ export interface Ingredient extends SanityBody {
 export interface Product extends SanityBody {
   _type: "product";
   brand: { name: string; slug?: Slug };
-  description: LocaleBlockContent;
+  description?: LocaleBlockContent;
   ingredients?: Ingredient[];
   slug?: Slug;
   name: string;
@@ -189,26 +205,28 @@ export interface Product extends SanityBody {
   productImage: Image | undefined;
   productTag: string;
   category: { categoryName: LocaleString; name: string };
+  pageBuilder?: TypedObject[] | TypedObject;
+  sizes?: string[];
 }
 
-// export interface BrandAward extends SanityBody {
-//   _type: "brandAward"
-//   brand: { name: string; slug: Slug }
-//   description: string
-//   name: string
-//   mainImage: Image | undefined
-//   year: number
-// }
+export interface BrandAward extends SanityBody {
+  _type: "brandAward";
+  brand: { name: string; slug: Slug };
+  description: string;
+  name: string;
+  mainImage: Image | undefined;
+  year: number;
+}
 
-// export interface Treatment extends SanityBody {
-//   _type: "treatment"
-//   brand: { name: string; slug: Slug }
-//   description: LocaleText
-//   products: Product[]
-//   slug: Slug
-//   name: string
-//   treatmentImage: Image | undefined
-// }
+export interface Treatment extends SanityBody {
+  _type: "treatment";
+  brand: { name: string; slug: Slug };
+  description: LocaleText;
+  products: Product[];
+  slug: Slug;
+  name: LocaleString;
+  treatmentImage: Image | undefined;
+}
 
 // export interface TermsAndConditions extends SanityBody {
 //   _type: "termsAndConditions"

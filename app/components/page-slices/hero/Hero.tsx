@@ -25,14 +25,20 @@ const Hero = ({
 }: Props) => {
   return (
     <section
-      className={`relative w-screen pb-4 md:pb-8 ${
+      className={`relative mb-4 w-screen md:mb-8 ${
         variant === "full" ? "h-screen max-h-[calc(100vh-64px)]" : null
       } `}
     >
       {variant === "full" ? (
-        <div className="h-full w-full">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
+          className="h-full w-full"
+        >
           <Image
-            className={`min-w-screen h-full w-full origin-top rounded-bl-large rounded-br-large object-cover ${
+            className={`h-full w-full origin-top rounded-bl-large rounded-br-large object-cover ${
               textColor === "dark" ? " brightness-125 " : " brightness-75 "
             }`}
             src={urlFor(image).width(1920).height(1080).url()}
@@ -40,17 +46,24 @@ const Hero = ({
             height={1080}
             alt={image?.alt || "Hero Image"}
           />
-        </div>
+        </motion.div>
       ) : (
-        <Image
-          className={`h-[540px] w-screen origin-top rounded-bl-large rounded-br-large object-cover ${
-            textColor === "dark" ? " brightness-125 " : " brightness-75 "
-          }`}
-          src={urlFor(image).width(1920).height(540).url()}
-          width={1920}
-          height={1080}
-          alt={image?.alt || "Hero Image"}
-        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
+        >
+          <Image
+            className={`h-[540px] w-full origin-top rounded-bl-large rounded-br-large object-cover ${
+              textColor === "dark" ? " brightness-125 " : " brightness-75 "
+            }`}
+            src={urlFor(image).width(1920).height(540).url()}
+            width={1920}
+            height={1080}
+            alt={image?.alt || "Hero Image"}
+          />
+        </motion.div>
       )}
 
       <div className="absolute left-1/2 top-1/2 m-auto -translate-x-1/2 -translate-y-1/2 text-center">
@@ -58,11 +71,11 @@ const Hero = ({
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
-          className={`text-h3 uppercase md:text-h2 ${
+          transition={{ duration: 0.75, delay: 0.1, ease: "easeOut" }}
+          className={`max-w-4xl text-h3 uppercase md:text-h2 md:leading-tight ${
             textColor === "dark"
               ? " text-tw-black"
-              : " text-white shadow-red-500 drop-shadow-lg"
+              : " text-white  drop-shadow-lg"
           }`}
         >
           {heading}

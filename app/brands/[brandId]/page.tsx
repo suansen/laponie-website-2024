@@ -20,7 +20,16 @@ export async function generateStaticParams() {
 
 const BrandDetails = async ({ params: { brandId } }: Props) => {
   const queries = {
-    pages: groq` *[_type == "brand" && slug.current == $slug][0]`,
+    pages: groq`*[_type == "brand" && slug.current == $slug][0]{
+_type, name, slug, description,
+  pageBuilder[]{...,
+    products[]->{ description, productName, productImage, slug, brand->{name, slug} },
+    awards[]->{name, mainImage},
+    reviews[]->{rating, customerImage, customerReview, name},
+    team[]->,
+    cards[]->
+  }
+}`,
   };
 
   const pages = await sanityClient.fetch<PageType>(queries.pages, {
@@ -28,10 +37,11 @@ const BrandDetails = async ({ params: { brandId } }: Props) => {
   });
 
   return (
-    <main className="flex flex-col items-center justify-between px-4 md:px-16">
+    <main className="flex flex-col items-center justify-between overflow-hidden px-4 md:px-16">
       <PageTemplate blocks={pages.pageBuilder} />
-      {JSON.stringify(brandId)}
-      {JSON.stringify(pages.pageBuilder)}
+      {/* <div className="w-full max-w-7xl">
+        {JSON.stringify(pages.pageBuilder)}
+      </div> */}
     </main>
   );
 };

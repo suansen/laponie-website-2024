@@ -23,13 +23,13 @@ function HeroRounded({ title, subheader1, subheader2, img }: Props) {
   // const imageProps = useNextSanityImage(sanityClient, img)
 
   return (
-    <section className=" flex flex-col items-center justify-center text-tw-text-black">
+    <section className="flex w-full flex-col items-center justify-center px-4 text-center text-tw-text-black md:px-8">
       {/* min-h-[calc(100vh-80px)] */}
       <motion.h1
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0, duration: 1 }}
-        className="over z-10 pt-10 font-laponie text-h4 uppercase leading-none md:text-[64px]"
+        className="over z-10 max-w-xl pt-10 font-laponie text-h4 uppercase leading-tight md:text-[64px]"
       >
         {title}
       </motion.h1>
@@ -37,7 +37,7 @@ function HeroRounded({ title, subheader1, subheader2, img }: Props) {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.25, duration: 1 }}
-        className="z-10 text-h5 uppercase md:text-[48px]"
+        className="z-10 max-w-xl text-h5 uppercase leading-tight md:text-[48px] "
       >
         {subheader1}
       </motion.p>
@@ -45,7 +45,7 @@ function HeroRounded({ title, subheader1, subheader2, img }: Props) {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 1 }}
-        className="z-10 text-h5 uppercase md:text-[48px]"
+        className="z-10 max-w-xl text-h5 uppercase leading-tight md:text-[48px] "
       >
         {subheader2}
       </motion.p>

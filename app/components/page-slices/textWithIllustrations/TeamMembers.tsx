@@ -54,7 +54,7 @@ const TeamMembers = ({
         initial="hidden"
         whileInView="show"
         viewport={{ once: false }}
-        className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:flex-grow lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+        className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:flex-grow lg:grid-cols-3 xl:grid-cols-4 "
       >
         {teamMembers.map((teamMember, i) => (
           <TeamCard

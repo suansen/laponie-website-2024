@@ -62,7 +62,7 @@ function Navigation({ navItems }: Props) {
           "data-[active=true]:after:right-0",
           "data-[active=true]:after:h-[4px]",
           "data-[active=true]:after:rounded-[2px]",
-          "data-[active=true]:after:bg-tw-pink",
+          "data-[active=true]:after:bg-tw-primary-dark",
           "data-[active=true]:after:rounded-r-xl",
           "data-[active=true]:after:rounded-l-xl",
         ],
@@ -148,7 +148,7 @@ function Navigation({ navItems }: Props) {
                       className="pl-4"
                     >
                       <Link
-                        href={brandItem.slug.current}
+                        href={`/brands/${brandItem.slug.current}`}
                         className="uppercase text-tw-black/80"
                       >
                         {brandItem.name}
