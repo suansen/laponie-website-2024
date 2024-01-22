@@ -35,9 +35,9 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
   ];
   categories.push(
     ...productCategories.map((category) => ({
-      label: category.categoryName?.en,
-      value: category.categoryName?.en,
-      description: category.description,
+      label: category?.categoryName?.en || "All",
+      value: category?.categoryName?.en || "all",
+      description: category?.description,
     })),
   );
 
