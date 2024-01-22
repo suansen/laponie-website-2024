@@ -332,7 +332,7 @@ function PageTemplate({ blocks = [], product }: Props) {
                           description={product?.description}
                           productName={product?.productName}
                           productImage={product?.productImage}
-                          sizes={product?.sizes}
+                          // sizes={product?.sizes}
                           brand={product.brand}
                         />
                       ) : null}

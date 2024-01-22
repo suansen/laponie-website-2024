@@ -12,7 +12,7 @@ export const dynamicParams = false;
 type Props = { params: { brandId: string; productId: string } };
 
 const queries = {
-  pages: groq`*[_type == "product" && slug.current == $productId]{
+  pages: groq`*[_type == "product" && slug.current == $productId && !(_id in path("drafts.**"))]{
   ...,
   brand -> {name, slug},
   ingredients[] ->{ name, description },
@@ -61,7 +61,7 @@ const ProductDetails = async ({ params }: Props) => {
         <BreadcrumbsComponent params={params} />
       </div>
       <div className="mt-10">
-        {product.pageBuilder ? (
+        {product.pageBuilder && product.pageBuilder.length > 0 ? (
           <PageTemplate blocks={product.pageBuilder} product={product} />
         ) : (
           <>
@@ -69,7 +69,7 @@ const ProductDetails = async ({ params }: Props) => {
               description={product.description}
               productName={product?.productName}
               productImage={product?.productImage}
-              sizes={product.sizes}
+              // sizes={product.sizes}
               brand={product.brand}
             />
             {product.ingredients && (

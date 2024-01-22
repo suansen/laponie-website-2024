@@ -18,7 +18,7 @@ type Props = {
   productName?: LocaleString;
   description?: LocaleBlockContent;
   productImage?: ImageType;
-  sizes?: string[];
+  // sizes?: string[];
   brand: { name: string; slug?: Slug };
 };
 
@@ -27,7 +27,7 @@ const SingleProductDisplay = ({
   description,
   productImage,
   brand,
-  sizes,
+  // sizes,
 }: Props) => {
   const { languageSelected } = useLanguageContext();
   return (
@@ -77,7 +77,7 @@ const SingleProductDisplay = ({
                   )}
                 </div>
               )}
-              <div className="pt-4 font-sans text-2xl md:text-3xl">Sizes</div>
+              {/* <div className="pt-4 font-sans text-2xl md:text-3xl">Sizes</div>
               <div className="flex gap-4 py-4">
                 {sizes &&
                   sizes.map((size, index) => (
@@ -88,7 +88,7 @@ const SingleProductDisplay = ({
                       {size}
                     </div>
                   ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
