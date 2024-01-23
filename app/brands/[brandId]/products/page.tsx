@@ -8,7 +8,7 @@ import React from "react";
 type Props = { params: { brandId: string } };
 
 const queries = {
-  pages: groq`*[_type == "brand" && slug.current == $slug][0]{
+  pages: groq`*[_type == "brand" && slug.current == $slug && !(_id in path("drafts.**"))][0]{
 _type, name, slug,
   productsPageBuilder[]{...,
     products[]->{ description, productName, productImage, slug, brand->{name, slug} },

@@ -70,7 +70,7 @@ const SingleProductDisplay = ({
                 <div className="space-y-4">
                   {description && (
                     <PortableText
-                      value={description?.cn}
+                      value={description?.cn || description?.en}
                       components={components}
                       // components={/* optional object of custom components to use */}
                     />

@@ -4,6 +4,7 @@ import SingleProductIngredientsDisplay from "@/app/components/page-slices/produc
 import PageTemplate from "@/app/components/pageTemplate";
 import { Product } from "@/typings";
 import { sanityClient } from "@/utils/sanity/client";
+// import next from "next";
 import { groq } from "next-sanity";
 import React from "react";
 
@@ -50,10 +51,14 @@ export async function generateStaticParams() {
 const ProductDetails = async ({ params }: Props) => {
   // console.log("params", params);
 
-  const product = await sanityClient.fetch<Product>(queries.pages, {
-    slug: params.brandId,
-    productId: params.productId,
-  });
+  const product = await sanityClient.fetch<Product>(
+    queries.pages,
+    {
+      slug: params.brandId,
+      productId: params.productId,
+    },
+    { next: { revalidate: 30 } },
+  );
 
   return (
     <main className="relative flex flex-col items-center justify-between overflow-hidden px-4 md:px-16">

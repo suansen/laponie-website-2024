@@ -67,7 +67,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
       searchParams.get("category") === "all"
     ) {
       queries = {
-        products: groq`*[_type == "product"]{
+        products: groq`*[_type == "product" && !(_id in path("drafts.**"))]{
       productName,
       productImage,
       brand -> {name, slug},
@@ -79,7 +79,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
       };
     } else {
       queries = {
-        products: groq`*[_type == "product"]{
+        products: groq`*[_type == "product" && !(_id in path("drafts.**"))]{
       productName,
       productImage,
       brand -> {name, slug},
