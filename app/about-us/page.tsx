@@ -12,7 +12,7 @@ const queries = {
 
 export default async function AboutUs() {
   const pages = await sanityClient.fetch<PageType>(queries.pages, {
-    cache: "no-store",
+    next: { revalidate: 30 },
   });
 
   return (

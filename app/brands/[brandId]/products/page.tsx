@@ -22,10 +22,13 @@ _type, name, slug,
 };
 
 const ProductsDetails = async ({ params }: Props) => {
-  const pages = await sanityClient.fetch<ProductsPageType>(queries.pages, {
-    slug: params.brandId,
-    cache: "no-store",
-  });
+  const pages = await sanityClient.fetch<ProductsPageType>(
+    queries.pages,
+    {
+      slug: params.brandId,
+    },
+    { cache: "no-store" },
+  );
 
   return (
     <main className="relative flex flex-col items-center justify-between overflow-hidden px-4 md:px-16">
