@@ -50,7 +50,7 @@ const CardsForProduct = ({
         )}
       </div>
       <div className="hidden w-full flex-wrap justify-center gap-4 md:flex md:gap-8">
-        {products.map((product, index) => (
+        {products?.map((product, index) => (
           <ProductCard
             key={`${product?.name}${index}`}
             item={product}
@@ -59,11 +59,15 @@ const CardsForProduct = ({
         ))}
       </div>
       {buttonText ? (
-        <Link href={buttonLink} className="pt-4 md:pt-8">
-          <Button color="primary" size="lg">
-            {buttonText}
-          </Button>
-        </Link>
+        <>
+          {buttonLink ? (
+            <Link href={buttonLink} className="pt-4 md:pt-8">
+              <Button color="primary" size="lg">
+                {buttonText}
+              </Button>
+            </Link>
+          ) : null}
+        </>
       ) : null}
     </section>
   );

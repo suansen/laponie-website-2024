@@ -41,7 +41,7 @@ const TreatmentsPage = async ({ params }: Props) => {
           <BreadcrumbsComponent params={params} type="treatments" />
         </div>
         <div className="mt-10">
-          {pages.treatmentsPageBuilder ? (
+          {pages?.treatmentsPageBuilder ? (
             <PageTemplate
               blocks={pages.treatmentsPageBuilder}
               params={params}
