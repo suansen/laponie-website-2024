@@ -43,7 +43,7 @@ _type, name, slug, description,
 
   return (
     <main className="flex flex-col items-center justify-between overflow-hidden px-4 md:px-16">
-      <PageTemplate blocks={pages.pageBuilder} />
+      {pages ? <PageTemplate blocks={pages.pageBuilder} /> : null}
     </main>
   );
 };
