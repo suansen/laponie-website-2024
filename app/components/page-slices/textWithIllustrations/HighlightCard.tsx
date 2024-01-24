@@ -46,7 +46,7 @@ export default function HighlightCard({ item, languageSelected }: Props) {
         {languageSelected === "en" ? item.title.en : item.title.cn}
       </h3>
 
-      <p className="z-10 line-clamp-7 min-h-[120px] border-b-1 border-tw-white-off pb-4 text-left font-secondary text-[1] text-tw-white-off opacity-0 transition-opacity duration-300 ease-in group-hover:opacity-100">
+      <p className="z-10 mb-4 line-clamp-7 min-h-[120px] overflow-hidden border-tw-white-off text-left font-secondary text-[1] text-tw-white-off opacity-0 transition-opacity duration-300 ease-in group-hover:opacity-100">
         {languageSelected === "en" ? item.description.en : item.description.cn}
       </p>
       <Button
