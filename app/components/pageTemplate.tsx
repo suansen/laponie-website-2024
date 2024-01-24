@@ -21,13 +21,20 @@ import CardsForLink from "./page-slices/textWithIllustrations/CardsForLink";
 
 import ProductDisplay from "./page-slices/productDisplay/productDisplay";
 import SingleProductDisplay from "./page-slices/productDisplay/singleProductDisplay";
-import { Product } from "@/typings";
+import { Product, Treatment } from "@/typings";
 import SingleProductIngredientsDisplay from "./page-slices/productDisplay/singleProductIngredientsDisplay";
+import TreatmentDisplay from "./page-slices/productDisplay/treatmentDisplay";
+import SingleTreatmentDisplay from "./page-slices/productDisplay/singleTreatmentDisplay";
 // import { PageBuilderType, HeroRoundedType } from "@/typings"
 
-type Props = { product?: Product; blocks: any[] };
+type Props = {
+  product?: Product;
+  treatment?: Treatment;
+  blocks: any[];
+  params?: { brandId: string; productId?: string; treatmentId?: string };
+};
 
-function PageTemplate({ blocks = [], product }: Props) {
+function PageTemplate({ blocks = [], product, params, treatment }: Props) {
   const { languageSelected } = useLanguageContext();
   return (
     <>
@@ -349,6 +356,41 @@ function PageTemplate({ blocks = [], product }: Props) {
                       ) : null}
                     </>
                   );
+                case "treatmentsDisplay":
+                  return (
+                    <>
+                      <TreatmentDisplay
+                        params={params}
+                        treatments={block.treatments}
+                        languageSelected={languageSelected}
+                        heading={
+                          languageSelected === "en"
+                            ? block.heading?.en
+                            : block.heading?.cn || block.heading?.en
+                        }
+                        subheading={
+                          languageSelected === "en"
+                            ? block.subheading?.en
+                            : block.subheading?.cn || block.subheading?.en
+                        }
+                      />
+                    </>
+                  );
+
+                case "singleTreatmentDisplay":
+                  return (
+                    <>
+                      {treatment ? (
+                        <SingleTreatmentDisplay
+                          name={treatment?.name}
+                          description={treatment?.description}
+                          treatmentImage={treatment?.treatmentImage}
+                          brand={treatment?.brand}
+                        />
+                      ) : null}
+                    </>
+                  );
+
                 // case "won":
                 //   return <></>;
 

@@ -35,6 +35,7 @@ export async function generateStaticParams() {
         brand -> {slug},
         slug
     }`,
+    { cache: "no-store" },
   );
 
   return paths.map(
@@ -57,29 +58,31 @@ const ProductDetails = async ({ params }: Props) => {
       slug: params.brandId,
       productId: params.productId,
     },
-    { next: { revalidate: 30 } },
+    { cache: "no-store" },
   );
+
+  // console.log(product);
 
   return (
     <main className="relative flex flex-col items-center justify-between overflow-hidden px-4 md:px-16">
       <div className="fixed top-[64px] z-20 flex h-10 w-screen items-center justify-center border-y-1 border-tw-primary-dark/70  bg-tw-primary-light/90 backdrop-blur-lg ">
-        <BreadcrumbsComponent params={params} />
+        <BreadcrumbsComponent params={params} type="products" />
       </div>
       <div className="mt-10">
-        {product.pageBuilder && product.pageBuilder.length > 0 ? (
+        {product?.pageBuilder && product?.pageBuilder?.length > 0 ? (
           <PageTemplate blocks={product.pageBuilder} product={product} />
         ) : (
           <>
             <SingleProductDisplay
-              description={product.description}
+              description={product?.description}
               productName={product?.productName}
               productImage={product?.productImage}
               // sizes={product.sizes}
-              brand={product.brand}
+              brand={product?.brand}
             />
-            {product.ingredients && (
+            {product?.ingredients && (
               <SingleProductIngredientsDisplay
-                ingredients={product.ingredients}
+                ingredients={product?.ingredients}
                 heading={{
                   en: "Active Ingredient",
                   _type: "localeString",

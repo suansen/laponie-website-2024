@@ -91,10 +91,14 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
       };
     }
 
-    const data = await sanityClient.fetch<Product[]>(queries.products, {
-      slug: params.brandId,
-      category: searchParams.get("category"),
-    });
+    const data = await sanityClient.fetch<Product[]>(
+      queries.products,
+      {
+        slug: params.brandId,
+        category: searchParams.get("category"),
+      },
+      { cache: "no-store" },
+    );
 
     setProducts(data);
   };

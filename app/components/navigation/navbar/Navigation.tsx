@@ -45,6 +45,7 @@ function Navigation({ navItems }: Props) {
 
   return (
     <Navbar
+      maxWidth="xl"
       className={`w-full bg-tw-primary/80`}
       classNames={{
         item: [

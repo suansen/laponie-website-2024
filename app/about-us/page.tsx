@@ -11,7 +11,9 @@ const queries = {
 };
 
 export default async function AboutUs() {
-  const pages = await sanityClient.fetch<PageType>(queries.pages);
+  const pages = await sanityClient.fetch<PageType>(queries.pages, {
+    cache: "no-store",
+  });
 
   return (
     <main className="mt-[1rem] flex min-h-screen flex-col items-center px-4 md:mt-[80px] md:px-0">

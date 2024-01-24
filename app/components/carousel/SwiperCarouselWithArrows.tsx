@@ -41,7 +41,6 @@ function SwiperCarouselWithArrows({ languageSelected, products }: Props) {
 
   return (
     <>
-      {/* {JSON.stringify(products[0])} */}
       <div className="flex h-12 place-content-end items-center gap-x-4 pr-4">
         <div className={styles.swiperButton} onClick={handleLeftClick}>
           <CaretLeftIcon />

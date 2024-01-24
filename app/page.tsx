@@ -12,8 +12,9 @@ const queries = {
 };
 
 export default async function Home() {
-  // const brands = await client.fetch<Brand[]>(`*[_type == "brand"]`)
-  const pages = await sanityClient.fetch<PageType>(queries.pages);
+  const pages = await sanityClient.fetch<PageType>(queries.pages, {
+    cache: "no-store",
+  });
 
   return (
     <main className="mt-[1rem] flex flex-col items-center justify-between px-4 md:mt-[80px] md:px-16">

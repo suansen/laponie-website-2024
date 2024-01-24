@@ -24,12 +24,13 @@ _type, name, slug,
 const ProductsDetails = async ({ params }: Props) => {
   const pages = await sanityClient.fetch<ProductsPageType>(queries.pages, {
     slug: params.brandId,
+    cache: "no-store",
   });
 
   return (
     <main className="relative flex flex-col items-center justify-between overflow-hidden px-4 md:px-16">
       <div className="fixed top-[64px] z-10 flex h-10 w-screen items-center justify-center border-y-1 border-tw-primary-dark/70  bg-tw-primary-light/90 backdrop-blur-lg ">
-        <BreadcrumbsComponent params={params} />
+        <BreadcrumbsComponent params={params} type="products" />
       </div>
       <div className="mt-10">
         {pages.productsPageBuilder ? (

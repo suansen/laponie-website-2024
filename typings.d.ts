@@ -76,6 +76,13 @@ export interface ProductsPageType extends SanityBody {
   pageBuilder: TypedObject[] | TypedObject;
   productsPageBuilder: TypedObject[] | TypedObject;
 }
+
+export interface TreatmentsPageType extends SanityBody {
+  title: string;
+  _type: "page";
+  pageBuilder: TypedObject[] | TypedObject;
+  treatmentsPageBuilder: TypedObject[] | TypedObject;
+}
 export interface TeamMember extends SanityBody {
   _type: "teamMember";
   teamMemberName: LocaleString;
@@ -226,6 +233,7 @@ export interface Treatment extends SanityBody {
   slug: Slug;
   name: LocaleString;
   treatmentImage: Image | undefined;
+  pageBuilder?: TypedObject[] | TypedObject;
 }
 
 // export interface TermsAndConditions extends SanityBody {

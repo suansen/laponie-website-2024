@@ -11,6 +11,7 @@ type Props = { params: { brandId: string } };
 export async function generateStaticParams() {
   const paths = await sanityClient.fetch(
     `*[_type == "brand" && defined(slug.current)][].slug.current`,
+    { cache: "no-store" },
   );
 
   return paths.map((path: string) => ({
@@ -32,16 +33,17 @@ _type, name, slug, description,
 }`,
   };
 
-  const pages = await sanityClient.fetch<PageType>(queries.pages, {
-    slug: brandId,
-  });
+  const pages = await sanityClient.fetch<PageType>(
+    queries.pages,
+    {
+      slug: brandId,
+    },
+    { cache: "no-store" },
+  );
 
   return (
     <main className="flex flex-col items-center justify-between overflow-hidden px-4 md:px-16">
       <PageTemplate blocks={pages.pageBuilder} />
-      {/* <div className="w-full max-w-7xl">
-        {JSON.stringify(pages.pageBuilder)}
-      </div> */}
     </main>
   );
 };

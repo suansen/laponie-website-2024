@@ -11,7 +11,7 @@ type Props = {
   tagline: string;
   buttonLink: string;
   textColor: string;
-  variant: "full" | "half";
+  variant: "full" | "half" | "quarter";
 };
 
 const Hero = ({
@@ -26,7 +26,11 @@ const Hero = ({
   return (
     <section
       className={`relative mb-4 w-screen md:mb-8 ${
-        variant === "full" ? "h-screen max-h-[calc(100vh-64px)]" : null
+        variant === "full"
+          ? "h-screen max-h-[calc(100vh-64px)]"
+          : variant === "quarter"
+            ? "h-[300px]"
+            : null
       } `}
     >
       {variant === "full" ? (
@@ -42,6 +46,23 @@ const Hero = ({
               textColor === "dark" ? " brightness-125 " : " brightness-75 "
             }`}
             src={urlFor(image).width(1920).height(1080).url()}
+            width={1920}
+            height={1080}
+            alt={image?.alt || "Hero Image"}
+          />
+        </motion.div>
+      ) : variant === "quarter" ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
+        >
+          <Image
+            className={`h-[300px] w-full origin-top rounded-bl-large rounded-br-large object-cover ${
+              textColor === "dark" ? " brightness-125 " : " brightness-75 "
+            }`}
+            src={urlFor(image).width(1920).height(540).url()}
             width={1920}
             height={1080}
             alt={image?.alt || "Hero Image"}
