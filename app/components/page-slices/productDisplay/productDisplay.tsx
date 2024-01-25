@@ -14,6 +14,7 @@ import {
   // PaginationItem,
   // PaginationCursor,
 } from "@nextui-org/react";
+import SearchField from "../../searchField/SearchField";
 
 type Props = {
   // products: Product[];
@@ -56,7 +57,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get("category") || categories[0].value,
   );
-  // const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("**");
 
   const fetchData = async () => {
     let queries = { products: "" };
@@ -75,7 +76,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
       ingredients[] ->{name},
       slug,
       description
-    }[brand.slug.current == $slug] | order(category.categoryName.en asc) `,
+    }[brand.slug.current == $slug && (productName.en match $search || productName.cn match $search || category.categoryName.en match $search || category.categoryName.cn match $search )] | order(category.categoryName.en asc) `,
       };
     } else {
       queries = {
@@ -87,7 +88,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
       ingredients[] ->{name},
       slug,
       description
-    }[brand.slug.current == $slug && category.categoryName.en == $category] | order(category.categoryName.en asc) `,
+    }[brand.slug.current == $slug && category.categoryName.en == $category && (productName.en match $search || productName.cn match $search || category.categoryName.en match $search || category.categoryName.cn match $search )] | order(category.categoryName.en asc) `,
       };
     }
 
@@ -96,6 +97,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
       {
         slug: params.brandId,
         category: searchParams.get("category"),
+        search: `*${searchParams.get("search")}*`,
       },
       { cache: "no-store" },
     );
@@ -108,7 +110,9 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
     fetchData().catch(console.error);
 
     if (!selectedCategory) {
-      router.push(`/brands/${params.brandId}/products?page=1&category=all`);
+      router.push(
+        `/brands/${params.brandId}/products?page=1&category=all&search=**`,
+      );
       setPagePosition((prev) => ({
         ...prev,
         page: searchParams.get("page"),
@@ -122,11 +126,13 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
     // } catch (error) {
     // console.log("error", error);
     // }
-  }, [searchParams.get("category")]);
+  }, [searchParams]);
 
   useEffect(() => {
     if (!pagePosition.page) {
-      router.push(`/brands/${params.brandId}/products?page=1&category=all`);
+      router.push(
+        `/brands/${params.brandId}/products?page=1&category=all&search=**`,
+      );
       setPagePosition((prev) => ({
         ...prev,
         page: searchParams.get("page"),
@@ -155,6 +161,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
           <div>Filter By:</div>
           <div className="flex items-center">
             <Autocomplete
+              aria-label="Category"
               // color="primary"
               key={"primary"}
               color="default"
@@ -162,13 +169,13 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
                 router.replace(
                   `/brands/${params.brandId}/products?page=1&category=${
                     key || "all"
-                  }`,
+                  }&search=*${searchTerm}*`,
                 );
                 setPagePosition((prev) => ({ ...prev, page: "1" }));
                 setSelectedCategory(key?.toString() || "all");
               }}
               defaultItems={categories}
-              label="Select a category"
+              placeholder="Select a category"
               className="max-w-xs"
               defaultSelectedKey={"all"}
             >
@@ -183,24 +190,38 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
         </div>
         {/* Search */}
         <div className="flex items-center justify-center">
-          {/* <SearchField searchTerm={searchTerm} setSearchTerm={setSearchTerm} />  */}
+          <SearchField
+            category={selectedCategory}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            brandId={params.brandId}
+            router={router}
+          />
         </div>
       </div>
       {/* Products */}
-      <div className="mx-auto grid grid-cols-1 gap-4  pt-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {products
-          .slice(pagePosition.start, pagePosition.end)
-          .map((product, index) => (
-            <Fragment key={`${product.productName?.en}${index}`}>
-              <>
-                <ProductCard
-                  item={product}
-                  languageSelected={languageSelected}
-                />
-              </>
-            </Fragment>
-          ))}
-      </div>
+      {products && products.length > 0 ? (
+        <div className="mx-auto grid grid-cols-1 gap-4  pt-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {products
+            .slice(pagePosition.start, pagePosition.end)
+            .map((product, index) => (
+              <Fragment key={`${product.productName?.en}${index}`}>
+                <>
+                  <ProductCard
+                    item={product}
+                    languageSelected={languageSelected}
+                  />
+                </>
+              </Fragment>
+            ))}
+        </div>
+      ) : (
+        <div>
+          <p className="">No results for products.</p>
+          <p className=" text-black/50">Try searching for something else.</p>
+        </div>
+      )}
+
       <div>
         {Math.ceil(products.length / per_page) <= 1 ? null : (
           <Pagination

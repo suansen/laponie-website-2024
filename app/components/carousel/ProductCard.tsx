@@ -12,9 +12,9 @@ function ProductCard({ item, languageSelected }: Props) {
       href={`/brands/${item?.brand?.slug?.current}/products/${item?.slug?.current}`}
       className="group w-[280px]"
     >
-      <div className="h-[320px]  overflow-hidden ">
+      <div className="h-[320px] overflow-hidden rounded-lg ">
         <Image
-          className="h-[320px] w-full rounded-lg bg-tw-pink/20 object-contain transition duration-200 ease-in "
+          className="h-[320px] w-full  bg-tw-pink/20 object-contain transition duration-200 ease-in group-hover:scale-105"
           src={urlFor(item.productImage)
             .width(280)
             .fit("max")
