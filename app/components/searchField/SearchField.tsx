@@ -31,7 +31,7 @@ const SearchField = ({
     console.log(searchTerm);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
       router.replace(
