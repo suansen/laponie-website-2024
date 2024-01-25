@@ -20,8 +20,8 @@ const Hero = ({
   image,
   heading,
   tagline,
-  variant,
-  textColor,
+  variant="full",
+  textColor="dark",
 }: Props) => {
   return (
     <section
@@ -88,7 +88,7 @@ const Hero = ({
       )}
 
       <div className="absolute left-1/2 top-1/2 m-auto -translate-x-1/2 -translate-y-1/2 text-center">
-        <motion.h2
+        {heading ? ( <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -100,7 +100,8 @@ const Hero = ({
           }`}
         >
           {heading}
-        </motion.h2>
+        </motion.h2>) : (null)}
+
         {tagline && (
           <motion.div
             initial={{ opacity: 0 }}

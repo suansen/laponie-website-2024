@@ -34,7 +34,7 @@ const MapBox = ({
   return (
     <section className="flex max-w-7xl flex-col items-center justify-center px-4 py-8 md:px-4 md:py-16">
       <div className="text-center">
-        <motion.h2
+        {header ? ( <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -42,7 +42,8 @@ const MapBox = ({
           className="text-h4 uppercase text-tw-black md:pb-4 md:text-h3"
         >
           {header}
-        </motion.h2>
+        </motion.h2>) : (null)}
+
         {subheader && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -57,9 +58,6 @@ const MapBox = ({
       </div>
       <div className="grid max-w-7xl grid-cols-1 items-center justify-items-center gap-x-16 pb-8 md:grid-cols-2 md:justify-items-start lg:grid-cols-5">
         {/* Map */}
-        {/* <div>
-        {header} {subheader}
-      </div> */}
         <div className="my-4 h-full max-h-[500px] min-h-[280px] w-full overflow-hidden rounded-2xl  md:my-0 lg:col-span-3 lg:min-h-[480px]">
           <MapBoxMap latitude={latitude} longitude={longitude} />
         </div>
