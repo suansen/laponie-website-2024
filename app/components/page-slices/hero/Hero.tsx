@@ -20,8 +20,8 @@ const Hero = ({
   image,
   heading,
   tagline,
-  variant="full",
-  textColor="dark",
+  variant = "full",
+  textColor = "dark",
 }: Props) => {
   return (
     <section
@@ -42,9 +42,7 @@ const Hero = ({
           className="h-full w-full"
         >
           <Image
-            className={`h-full w-full origin-top rounded-bl-large rounded-br-large object-cover ${
-              textColor === "dark" ? " brightness-125 " : " brightness-75 "
-            }`}
+            className={`h-full w-full origin-top rounded-bl-large rounded-br-large object-cover`}
             src={urlFor(image).width(1920).height(1080).url()}
             width={1920}
             height={1080}
@@ -59,9 +57,7 @@ const Hero = ({
           transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
         >
           <Image
-            className={`h-[300px] w-full origin-top rounded-bl-large rounded-br-large object-cover ${
-              textColor === "dark" ? " brightness-125 " : " brightness-75 "
-            }`}
+            className={`h-[300px] w-full origin-top rounded-bl-large rounded-br-large object-cover`}
             src={urlFor(image).width(1920).height(540).url()}
             width={1920}
             height={1080}
@@ -76,9 +72,7 @@ const Hero = ({
           transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
         >
           <Image
-            className={`h-[540px] w-full origin-top rounded-bl-large rounded-br-large object-cover ${
-              textColor === "dark" ? " brightness-125 " : " brightness-75 "
-            }`}
+            className={`h-[540px] w-full origin-top rounded-bl-large rounded-br-large object-cover`}
             src={urlFor(image).width(1920).height(540).url()}
             width={1920}
             height={1080}
@@ -88,19 +82,21 @@ const Hero = ({
       )}
 
       <div className="absolute left-1/2 top-1/2 m-auto -translate-x-1/2 -translate-y-1/2 text-center">
-        {heading ? ( <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.75, delay: 0.1, ease: "easeOut" }}
-          className={`max-w-4xl text-h3 uppercase md:text-h2 md:leading-tight ${
-            textColor === "dark"
-              ? " text-tw-black"
-              : " text-white  drop-shadow-lg"
-          }`}
-        >
-          {heading}
-        </motion.h2>) : (null)}
+        {heading ? (
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0.1, ease: "easeOut" }}
+            className={`max-w-4xl text-h3 uppercase md:text-h2 md:leading-tight ${
+              textColor === "dark"
+                ? " text-tw-black"
+                : " text-white  drop-shadow-lg"
+            }`}
+          >
+            {heading}
+          </motion.h2>
+        ) : null}
 
         {tagline && (
           <motion.div
