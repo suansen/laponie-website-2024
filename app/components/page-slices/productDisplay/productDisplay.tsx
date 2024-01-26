@@ -57,7 +57,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get("category") || categories[0].value,
   );
-  const [searchTerm, setSearchTerm] = useState("**");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchData = async () => {
     let queries = { products: "" };
@@ -230,7 +230,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
             initialPage={1}
             onChange={(page) => {
               router.replace(
-                `/brands/${params.brandId}/products?page=${page}&category=${selectedCategory}`,
+                `/brands/${params.brandId}/products?page=${page}&category=${selectedCategory}&search=*${searchTerm}*`,
               );
             }}
           />
