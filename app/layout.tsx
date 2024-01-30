@@ -65,7 +65,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const navItems = await sanityClient.fetch(queries.navigation, {
-    next: { revalidate: 30 },
+    next: { revalidate: 300 },
   });
 
   return (
