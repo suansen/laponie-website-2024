@@ -99,7 +99,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
         category: searchParams.get("category"),
         search: `*${searchParams.get("search")}*`,
       },
-      { cache: "no-store" },
+      { next: { revalidate: 30 } },
     );
 
     setProducts(data);

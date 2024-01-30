@@ -29,7 +29,7 @@ const TreatmentsPage = async ({ params }: Props) => {
     {
       slug: params.brandId,
     },
-    { cache: "no-store" },
+    { next: { revalidate: 30 } },
   );
 
   // const { languageSelected } = useLanguageContext;

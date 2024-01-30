@@ -35,7 +35,7 @@ export async function generateStaticParams() {
         brand -> {slug},
         slug
     }`,
-    { cache: "no-store" },
+    { next: { revalidate: 30 } },
   );
   return paths.map(
     (path: {

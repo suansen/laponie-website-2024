@@ -35,7 +35,7 @@ export async function generateStaticParams() {
         brand -> {slug},
         slug
     }`,
-    { cache: "no-store" },
+    { next: { revalidate: 30 } },
   );
 
   return paths.map(
@@ -58,7 +58,7 @@ const ProductDetails = async ({ params }: Props) => {
       slug: params.brandId,
       productId: params.productId,
     },
-    { cache: "no-store" },
+    { next: { revalidate: 30 } },
   );
 
   // console.log(product);

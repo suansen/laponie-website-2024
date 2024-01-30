@@ -9,7 +9,9 @@ const queries = {
 };
 
 const PrivacyPolicyPage = async () => {
-  const data = await sanityClient.fetch(queries.pages, { cache: "no-store" });
+  const data = await sanityClient.fetch(queries.pages, {
+    next: { revalidate: 30 },
+  });
 
   return (
     <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-16">
