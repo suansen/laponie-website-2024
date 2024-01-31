@@ -13,9 +13,13 @@ const queries = {
 };
 
 export default async function AboutUs() {
-  const pages = await sanityClient.fetch<PageType>(queries.pages, {
-    next: { revalidate: 30 },
-  });
+  const pages = await sanityClient.fetch<PageType>(
+    queries.pages,
+    {},
+    {
+      next: { revalidate: 30 },
+    },
+  );
   return (
     <>
       <main className="flex min-h-screen flex-col items-center px-4 md:px-0">

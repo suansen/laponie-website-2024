@@ -12,9 +12,13 @@ const queries = {
 };
 
 export default async function Home() {
-  const pages = await sanityClient.fetch<PageType>(queries.pages, {
-    cache: "no-store",
-  });
+  const pages = await sanityClient.fetch<PageType>(
+    queries.pages,
+    {},
+    {
+      next: { revalidate: 30 },
+    },
+  );
 
   return (
     <main className="mt-[1rem] flex flex-col items-center justify-between px-4 md:mt-[80px] md:px-16">
