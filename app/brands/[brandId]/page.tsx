@@ -11,6 +11,7 @@ type Props = { params: { brandId: string } };
 export async function generateStaticParams() {
   const paths = await sanityClient.fetch(
     `*[_type == "brand" && defined(slug.current)][].slug.current`,
+    {},
     { next: { revalidate: 30 } },
   );
 
