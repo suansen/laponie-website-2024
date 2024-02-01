@@ -29,7 +29,8 @@ _type, name, slug, description,
     awards[]->{name, mainImage},
     reviews[]->{rating, customerImage, customerReview, name},
     team[]->,
-    cards[]->
+    cards[]->,
+    categories[]->{categoryName, mainImage}
   }
 }`,
   };

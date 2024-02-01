@@ -88,7 +88,7 @@ const Hero = ({
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75, delay: 0.1, ease: "easeOut" }}
-            className={`max-w-4xl text-h3 uppercase md:text-h2 md:leading-tight ${
+            className={`max-w-4xl text-h3 uppercase leading-tight md:text-h2 ${
               textColor === "dark"
                 ? " text-tw-black"
                 : " text-white  drop-shadow-lg"

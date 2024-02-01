@@ -177,7 +177,7 @@ const ProductDisplay = ({ languageSelected, productCategories }: Props) => {
               defaultItems={categories}
               placeholder="Select a category"
               className="max-w-xs"
-              defaultSelectedKey={"all"}
+              defaultSelectedKey={selectedCategory || "all"}
             >
               {categories.map((item) => (
                 <AutocompleteItem key={`${item.value}`}>

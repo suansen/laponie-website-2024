@@ -7,7 +7,13 @@ import PageTemplate from "./components/pageTemplate";
 
 const queries = {
   pages: groq`*[_type == "page" && slug.current=="home-page"]{
-  title, _type, pageBuilder[]{..., team[]->, cards[]->}
+  title, _type, pageBuilder[]{...,
+    awards[]->{name, mainImage},
+    reviews[]->{rating, customerImage, customerReview, name},
+    team[]->,
+    cards[]->,
+    categories[]->{categoryName, mainImage}
+  }
 }[0]`,
 };
 

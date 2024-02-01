@@ -25,6 +25,7 @@ import { Product, Treatment } from "@/typings";
 import SingleProductIngredientsDisplay from "./page-slices/productDisplay/singleProductIngredientsDisplay";
 import TreatmentDisplay from "./page-slices/productDisplay/treatmentDisplay";
 import SingleTreatmentDisplay from "./page-slices/productDisplay/singleTreatmentDisplay";
+import CardsForCategory from "./page-slices/textWithIllustrations/CardsForCategory";
 // import { PageBuilderType, HeroRoundedType } from "@/typings"
 
 type Props = {
@@ -140,6 +141,7 @@ function PageTemplate({ blocks = [], product, params, treatment }: Props) {
                       buttonText={block.buttonText}
                     />
                   );
+
                 case "headerSubHeader":
                   return (
                     <HeaderSubHeader
@@ -223,6 +225,32 @@ function PageTemplate({ blocks = [], product, params, treatment }: Props) {
                       languageSelected={languageSelected}
                       products={block.products}
                     />
+                  );
+                case "cardsForCategory":
+                  return (
+                    <>
+                      <CardsForCategory
+                        heading={
+                          languageSelected === "en"
+                            ? block.heading.en
+                            : block.heading.cn || block.heading.en
+                        }
+                        description={
+                          languageSelected === "en"
+                            ? block.description?.en
+                            : block.description?.cn || block.description?.en
+                        }
+                        buttonText={
+                          languageSelected === "en"
+                            ? block.button?.en
+                            : block.button?.cn || block.button?.en
+                        }
+                        buttonLink={block.button.link}
+                        languageSelected={languageSelected}
+                        categories={block.categories}
+                        brand={block.brand}
+                      />
+                    </>
                   );
                 case "cardsForLink":
                   return (
