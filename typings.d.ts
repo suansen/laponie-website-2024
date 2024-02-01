@@ -88,6 +88,7 @@ export interface TeamMember extends SanityBody {
   teamMemberName: LocaleString;
   title: LocaleString;
   mainImage: Image;
+  description?: LocaleText;
 }
 
 export interface Review extends SanityBody {
