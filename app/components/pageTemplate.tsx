@@ -26,6 +26,7 @@ import SingleProductIngredientsDisplay from "./page-slices/productDisplay/single
 import TreatmentDisplay from "./page-slices/productDisplay/treatmentDisplay";
 import SingleTreatmentDisplay from "./page-slices/productDisplay/singleTreatmentDisplay";
 import CardsForCategory from "./page-slices/textWithIllustrations/CardsForCategory";
+import TextWithIllustration from "./page-slices/textWithIllustrations/textWithIllustration";
 // import { PageBuilderType, HeroRoundedType } from "@/typings"
 
 type Props = {
@@ -87,6 +88,28 @@ function PageTemplate({ blocks = [], product, params, treatment }: Props) {
                           : block.tagline2?.cn || block.tagline2?.en
                       }
                       img={block.image}
+                    />
+                  );
+                // textWithIllustration
+                case "textWithIllustration":
+                  return (
+                    <TextWithIllustration
+                      heading={
+                        languageSelected === "en"
+                          ? block?.heading?.en
+                          : block?.heading?.cn || block?.heading?.en
+                      }
+                      tagline={
+                        languageSelected === "en"
+                          ? block?.tagline?.en
+                          : block?.tagline?.cn || block?.tagline?.en
+                      }
+                      excerpt={
+                        languageSelected === "en"
+                          ? block?.excerpt?.en
+                          : block?.excerpt?.cn || block?.excerpt?.en
+                      }
+                      image={block?.image}
                     />
                   );
                 case "headerLeftTextRight":

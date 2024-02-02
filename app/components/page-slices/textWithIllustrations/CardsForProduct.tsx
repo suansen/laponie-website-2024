@@ -43,13 +43,19 @@ const CardsForProduct = ({
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75, delay: 0.5, ease: "easeOut" }}
-            className="whitespace-line text-center font-secondary text-p-sm leading-relaxed text-tw-black/80 md:text-p"
+            className="whitespace-line text-center font-secondary text-p-sm leading-relaxed text-tw-black/50 md:text-p"
           >
             <TextSplit text={description} />
           </motion.div>
         )}
       </div>
-      <div className="hidden w-full flex-wrap justify-center gap-4 md:flex md:gap-8">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, delay: 0, ease: "easeOut" }}
+        className="hidden w-full flex-wrap justify-center gap-4 md:flex md:gap-8"
+      >
         {products?.map((product, index) => (
           <ProductCard
             key={`${product?.name}${index}`}
@@ -57,7 +63,7 @@ const CardsForProduct = ({
             languageSelected={languageSelected}
           />
         ))}
-      </div>
+      </motion.div>
       {buttonText ? (
         <>
           {buttonLink ? (

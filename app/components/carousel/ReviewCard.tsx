@@ -34,16 +34,19 @@ function ReviewCard({ item }: Props) {
       <div className="flex flex-col items-center justify-between gap-4">
         {/* image */}
         <div className="group relative hidden h-72 w-44 overflow-hidden rounded-b-full rounded-t-full md:inline-flex">
-          <Image
-            className="absolute left-0 top-0 object-cover "
-            width={180}
-            height={300}
-            src={urlFor(item?.customerImage)
-              .width(180)
-              .height(300)
-              .url()}
-            alt={`Image of a customer ${item?.name}`}
-          />
+          {item?.customerImage ? (
+            <Image
+              className="absolute left-0 top-0 object-cover "
+              width={180}
+              height={300}
+              src={urlFor(item?.customerImage)
+                .width(180)
+                .height(300)
+                .url()}
+              alt={`Image of a customer ${item?.name}`}
+            />
+          ) : null}
+
           {/* <div className=" md:rounded-t-full rounded-full md:rounded-b-full bg-tw-primary-pink absolute top-0 left-0 w-full h-full transition-all duration-300 ease-out opacity-70 mix-blend-hard-light group-hover:opacity-0 " /> */}
         </div>
         {/* name */}

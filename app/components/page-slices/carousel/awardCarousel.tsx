@@ -40,9 +40,11 @@ function AwardCarousel({ heading, description, awards }: Props) {
         ) : null}
       </div>
       {/* Swiper */}
-      {awards ? (  <div className="w-full max-w-7xl">
-        <SwiperCarousel awards={awards} />
-      </div>) : (null)}
+      {awards ? (
+        <div className="w-full max-w-7xl">
+          <SwiperCarousel awards={awards} />
+        </div>
+      ) : null}
     </section>
   );
 }
