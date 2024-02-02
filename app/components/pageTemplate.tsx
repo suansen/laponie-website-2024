@@ -67,6 +67,8 @@ function PageTemplate({ blocks = [], product, params, treatment }: Props) {
                       buttonLink={block.button?.link}
                       image={block.image}
                       variant={block.variant}
+                      marginBottom={block.marginBottom}
+                      parallax={block.parallax}
                     />
                   );
                 case "heroRounded":

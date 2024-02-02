@@ -12,6 +12,8 @@ type Props = {
   buttonLink: string;
   textColor: string;
   variant: "full" | "half" | "quarter";
+  marginBottom: boolean;
+  parallax: boolean;
 };
 
 const Hero = ({
@@ -22,10 +24,14 @@ const Hero = ({
   tagline,
   variant = "full",
   textColor = "dark",
+  marginBottom = true,
+  parallax = false,
 }: Props) => {
   return (
     <section
-      className={`relative mb-4 w-screen md:mb-8 ${
+      className={`relative ${
+        marginBottom ? "mb-4 md:mb-8" : "mb-0"
+      } w-screen  ${
         variant === "full"
           ? "h-screen max-h-[calc(100vh-64px)]"
           : variant === "quarter"
@@ -39,15 +45,25 @@ const Hero = ({
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
-          className="h-full w-full"
+          className={` h-full w-full ${
+            parallax ? "bg-cover bg-fixed bg-no-repeat" : null
+          }`}
+          style={{
+            backgroundImage: `url(${urlFor(image)
+              .width(1920)
+              .height(1080)
+              .url()})`,
+          }}
         >
-          <Image
-            className={`h-full w-full origin-top rounded-bl-large rounded-br-large object-cover`}
-            src={urlFor(image).width(1920).height(1080).url()}
-            width={1920}
-            height={1080}
-            alt={image?.alt || "Hero Image"}
-          />
+          {parallax ? null : (
+            <Image
+              className={`h-full w-full origin-top rounded-bl-large rounded-br-large object-cover`}
+              src={urlFor(image).width(1920).height(1080).url()}
+              width={1920}
+              height={1080}
+              alt={image?.alt || "Hero Image"}
+            />
+          )}
         </motion.div>
       ) : variant === "quarter" ? (
         <motion.div
