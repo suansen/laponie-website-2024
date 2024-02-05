@@ -2,7 +2,7 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 
-import LanguageToggler from "./LanguageToggler";
+// import LanguageToggler from "./LanguageToggler";
 import LaponieLogo from "./LaponieLogo";
 import { useLanguageContext } from "@/app/context/LanguageContext";
 
@@ -40,7 +40,7 @@ type Props = {
 function Navigation({ navItems }: Props) {
   const pathname = usePathname();
 
-  const { languageSelected, setLanguageSelected } = useLanguageContext();
+  const { languageSelected } = useLanguageContext();
   // const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -99,7 +99,9 @@ function Navigation({ navItems }: Props) {
                   color="foreground"
                   href={item.link}
                 >
-                  {languageSelected === "en" ? item.title.en : item.title.cn}
+                  {languageSelected === "en"
+                    ? item.title.en
+                    : item.title.cn || item.title.en}
                 </Link>
               </NavbarItem>
             ) : (
@@ -113,10 +115,10 @@ function Navigation({ navItems }: Props) {
           </React.Fragment>
         ))}
         <NavbarItem className="hidden sm:flex">
-          <LanguageToggler
+          {/* <LanguageToggler
             languageSelected={languageSelected}
             setLanguageSelected={setLanguageSelected}
-          />
+          /> */}
         </NavbarItem>
       </NavbarContent>
 
