@@ -20,10 +20,10 @@ const TeamCard = ({ teamMember, languageSelected }: Props) => {
             whileInView={{ opacity: 100 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75 }}
-            className="group relative flex h-48 w-48 items-center overflow-hidden rounded-full bg-tw-primary-pink p-4 md:h-80 md:w-52 md:items-end md:rounded-b-full md:rounded-t-full"
+            className="group relative flex h-48 w-48 items-center overflow-hidden rounded-lg bg-tw-primary-pink p-4 md:h-80 md:w-52 md:items-end md:rounded-full md:rounded-b-full md:rounded-t-full"
           >
             <Image
-              className="transition-scale absolute left-0 top-0 object-cover duration-300 ease-in group-hover:scale-105"
+              className="transition-scale absolute left-0 top-0 h-full w-full object-cover duration-300 ease-in group-hover:scale-105"
               src={urlFor(teamMember.mainImage).width(210).height(325).url()}
               width={210}
               height={325}

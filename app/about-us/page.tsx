@@ -3,11 +3,17 @@ import { PageType } from "@/typings";
 import { sanityClient } from "@/utils/sanity/client";
 import { groq } from "next-sanity";
 import PageTemplate from "../components/pageTemplate";
+import { Metadata } from "next";
 
 const queries = {
   pages: groq`*[_type == "page" && slug.current=="about-us"]{
   title, _type, pageBuilder[]{..., team[]->, cards[]->}
 }[0]`,
+};
+
+export const metadata: Metadata = {
+  title: "About Us - Laponie",
+  description: "About Us",
 };
 
 export default async function AboutUs() {

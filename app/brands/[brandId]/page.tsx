@@ -3,6 +3,7 @@ import { sanityClient } from "@/utils/sanity/client";
 import { groq } from "next-sanity";
 import React from "react";
 import PageTemplate from "@/app/components/pageTemplate";
+// import { Metadata, ResolvingMetadata } from "next";
 
 export const dynamicParams = false;
 
@@ -19,6 +20,27 @@ export async function generateStaticParams() {
     brandId: path,
   }));
 }
+
+// export async function generateMetadata(
+//   { params }: Props,
+//   parent: ResolvingMetadata,
+// ): Promise<Metadata> {
+//   // read route params
+//   const id = params.brandId;
+
+//   // fetch data
+//   const product = await fetch(`https://.../${id}`).then((res) => res.json());
+
+//   // optionally access and extend (rather than replace) parent metadata
+//   const previousImages = (await parent).openGraph?.images || [];
+
+//   return {
+//     title: product.title,
+//     openGraph: {
+//       images: ["/some-specific-page-image.jpg", ...previousImages],
+//     },
+//   };
+// }
 
 const BrandDetails = async ({ params: { brandId } }: Props) => {
   const queries = {

@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { urlFor } from "@/utils/sanity/client";
 import { motion } from "framer-motion";
-import { useScreen } from "usehooks-ts";
+import { useWindowSize } from "usehooks-ts";
 
 type Props = {
   buttonText: string;
@@ -28,7 +28,7 @@ const Hero = ({
   marginBottom = true,
   parallax = false,
 }: Props) => {
-  const screen = useScreen();
+  const screen = useWindowSize();
   return (
     <section
       className={`relative ${
@@ -48,7 +48,7 @@ const Hero = ({
           viewport={{ once: true }}
           transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
           className={` h-full w-full ${
-            parallax ? "bg-contain bg-fixed bg-center bg-no-repeat" : null
+            parallax ? "bg-cover bg-fixed bg-center bg-no-repeat" : null
           }`}
           style={{
             backgroundImage: `url(${urlFor(image)
@@ -57,15 +57,15 @@ const Hero = ({
               .url()})`,
           }}
         >
-          {/* {parallax ? null : ( */}
-          <Image
-            className={`h-full w-full origin-top rounded-bl-large rounded-br-large bg-fixed object-cover`}
-            src={urlFor(image).width(1920).height(1080).url()}
-            width={1920}
-            height={1080}
-            alt={image?.alt || "Hero Image"}
-          />
-          {/* )} */}
+          {parallax ? null : (
+            <Image
+              className={`h-full w-full origin-top rounded-bl-large rounded-br-large bg-fixed object-cover`}
+              src={urlFor(image).width(1920).height(1080).url()}
+              width={1920}
+              height={1080}
+              alt={image?.alt || "Hero Image"}
+            />
+          )}
         </motion.div>
       ) : variant === "quarter" ? (
         <motion.div

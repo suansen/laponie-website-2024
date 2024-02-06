@@ -3,9 +3,15 @@ import { groq } from "next-sanity";
 import React from "react";
 import { components } from "../components/blockComponent/component";
 import { sanityClient } from "@/utils/sanity/client";
+import { Metadata } from "next";
 
 const queries = {
   pages: groq`*[_type == "privacyPolicy"][0]`,
+};
+
+export const metadata: Metadata = {
+  title: "Privacy Policy - Laponie",
+  description: "Privacy Policy",
 };
 
 const PrivacyPolicyPage = async () => {
