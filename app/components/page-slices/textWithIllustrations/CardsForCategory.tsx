@@ -60,7 +60,7 @@ const CardsForCategory = ({
       >
         {categories?.map((category, index) => (
           <CategoryCard
-            key={`${category?.categoryName.en}${index}`}
+            key={`${category?.categoryName.en}${index}-categorycard`}
             brand={brand}
             item={category}
             languageSelected={languageSelected}

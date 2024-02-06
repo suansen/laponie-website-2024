@@ -58,7 +58,7 @@ const CardsForProduct = ({
       >
         {products?.map((product, index) => (
           <ProductCard
-            key={`${product?.name}${index}`}
+            key={`${product?.name}${index}-productcard`}
             item={product}
             languageSelected={languageSelected}
           />
