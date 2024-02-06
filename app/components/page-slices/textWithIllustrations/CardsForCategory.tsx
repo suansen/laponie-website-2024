@@ -56,7 +56,7 @@ const CardsForCategory = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, delay: 0, ease: "easeOut" }}
-        className="hidden w-full flex-wrap justify-center gap-4 md:flex md:gap-8"
+        className="flex w-full flex-wrap justify-center gap-4 md:gap-8"
       >
         {categories?.map((category, index) => (
           <CategoryCard
