@@ -52,8 +52,9 @@ const Hero = ({
           }`}
           style={{
             backgroundImage: `url(${urlFor(image)
-              .width(screen !== undefined ? screen.width : 1920)
-              .height(screen != undefined ? screen.height : 1080)
+              .width(typeof screen !== "undefined" ? screen?.width : 1920)
+              .height(typeof screen !== "undefined" ? screen?.height : 1080)
+              .auto("format")
               .url()})`,
           }}
         >
