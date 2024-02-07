@@ -47,9 +47,6 @@ const Hero = ({
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
-          className={` h-full w-full ${
-            parallax ? "bg-cover bg-fixed bg-center bg-no-repeat" : null
-          }`}
           style={{
             backgroundImage: `url(${urlFor(image)
               .width(typeof screen !== "undefined" ? screen?.width : 1920)
@@ -57,6 +54,9 @@ const Hero = ({
               .auto("format")
               .url()})`,
           }}
+          className={` h-full w-full ${
+            parallax ? "bg-cover bg-fixed bg-center bg-no-repeat" : null
+          }`}
         >
           {parallax ? null : (
             <Image
@@ -101,8 +101,8 @@ const Hero = ({
       )}
 
       <div className="absolute left-1/2 top-1/2 m-auto -translate-x-1/2 -translate-y-1/2 text-center">
-        {/* <div>{screen?.width}</div>
-        <div> {screen?.height}</div> */}
+        <div className="bg-white">{screen?.width}</div>
+        <div className="bg-white"> {screen?.height}</div>
 
         {heading ? (
           <motion.h2

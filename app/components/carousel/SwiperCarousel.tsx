@@ -28,8 +28,8 @@ function SwiperCarousel({ awards }: Props) {
     <>
       {/* Swiper */}
       <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1, delay: 0.25 }}
         className="mx-auto w-full max-w-7xl cursor-grab overflow-hidden rounded-xl bg-tw-primary py-8"

@@ -28,7 +28,7 @@ export default async function AboutUs() {
   );
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center px-4 md:px-0">
+      <main className="flex min-h-screen flex-col items-center overflow-hidden px-4 md:px-0">
         {pages?.pageBuilder && <PageTemplate blocks={pages?.pageBuilder} />}
       </main>
     </>

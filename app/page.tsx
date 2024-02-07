@@ -27,7 +27,7 @@ export default async function Home() {
   );
 
   return (
-    <main className="mt-[1rem] flex flex-col items-center justify-between px-4 md:mt-[80px] md:px-16">
+    <main className="mt-[1rem] flex flex-col items-center justify-between overflow-hidden px-4 md:mt-[80px] md:px-16">
       <PageTemplate blocks={pages.pageBuilder} />
     </main>
   );
