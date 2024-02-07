@@ -365,13 +365,13 @@ function PageTemplate({ blocks = [], product, params, treatment }: Props) {
                     <ReviewCarousel
                       heading={
                         languageSelected === "en"
-                          ? block.heading.en
-                          : block.heading.cn || block.heading.en
+                          ? block?.heading?.en
+                          : block?.heading?.cn || block?.heading?.en
                       }
                       description={
                         languageSelected === "en"
-                          ? block.description.en
-                          : block.description.cn || block.description.en
+                          ? block?.description?.en
+                          : block?.description?.cn || block?.description?.en
                       }
                       languageSelected={languageSelected}
                       reviews={block.reviews}
