@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { urlFor } from "@/utils/sanity/client";
 import { motion } from "framer-motion";
-import { useWindowSize } from "usehooks-ts";
+import { useScreen } from "usehooks-ts";
 
 type Props = {
   buttonText: string;
@@ -28,7 +28,7 @@ const Hero = ({
   marginBottom = true,
   parallax = false,
 }: Props) => {
-  const screen = useWindowSize();
+  const screen = useScreen();
   return (
     <section
       className={`relative ${
@@ -101,6 +101,9 @@ const Hero = ({
       )}
 
       <div className="absolute left-1/2 top-1/2 m-auto -translate-x-1/2 -translate-y-1/2 text-center">
+        {/* <div>{screen?.width}</div>
+        <div> {screen?.height}</div> */}
+
         {heading ? (
           <motion.h2
             initial={{ opacity: 0 }}
