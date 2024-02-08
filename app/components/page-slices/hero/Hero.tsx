@@ -54,8 +54,8 @@ const Hero = ({
               .auto("format")
               .url()})`,
           }}
-          className={` min-h-[calc(100vh - 64px)] h-full w-full ${
-            parallax ? "bg-cover bg-fixed bg-center bg-no-repeat" : null
+          className={`h-full w-full ${
+            parallax ? "bg-cover bg-center bg-no-repeat md:bg-fixed" : null
           }`}
         >
           {parallax ? null : (
