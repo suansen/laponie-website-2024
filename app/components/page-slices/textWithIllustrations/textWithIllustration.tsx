@@ -15,7 +15,7 @@ type Props = {
 const TextWithIllustration = ({ heading, tagline, excerpt, image }: Props) => {
   return (
     <section
-      className={`flex w-full max-w-7xl flex-col items-center justify-center gap-4 px-4 py-4 text-center md:flex-row md:gap-x-8 md:py-8`}
+      className={`mt-4 flex w-full max-w-7xl flex-col items-center justify-center gap-4 px-4 py-4 text-center md:flex-row md:gap-x-8 md:py-8`}
     >
       <div className="relative">
         <motion.div
