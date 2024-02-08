@@ -42,9 +42,15 @@ const TextWithIllustration = ({ heading, tagline, excerpt, image }: Props) => {
             <div className=" h-[480px] bg-tw-pink/20"></div>
           )}
         </motion.div>
-        <div className="absolute -left-4 -top-4 text-h3 leading-none text-tw-primary-dark md:-left-8 md:-top-8 md:text-h2">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.75, delay: 0.75, ease: "easeOut" }}
+          className="absolute -left-4 -top-4 text-h3 leading-none text-tw-primary-dark md:-left-8 md:-top-8 md:text-h2"
+        >
           {tagline}
-        </div>
+        </motion.div>
       </div>
 
       {/* text */}

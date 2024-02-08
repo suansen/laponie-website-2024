@@ -28,7 +28,7 @@ const ProductCarousel = ({
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
+            transition={{ duration: 0.75, delay: 0.25, ease: "easeOut" }}
             className="text-h4 uppercase md:pr-2 md:text-h3"
           >
             {heading}
@@ -39,7 +39,7 @@ const ProductCarousel = ({
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.75, delay: 0.25, ease: "easeOut" }}
+            transition={{ duration: 0.75, delay: 0.5, ease: "easeOut" }}
             className="pt-2 font-secondary text-p-sm leading-snug text-black/50 md:pl-2 md:text-base"
           >
             {description}
@@ -48,12 +48,18 @@ const ProductCarousel = ({
       </div>
       {/* Swiper */}
       {products ? (
-        <div className="w-full max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.75, delay: 0.75, ease: "easeOut" }}
+          className="w-full max-w-7xl"
+        >
           <SwiperCarouselWithArrows
             products={products}
             languageSelected={languageSelected}
           />
-        </div>
+        </motion.div>
       ) : null}
     </section>
   );
