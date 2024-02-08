@@ -60,7 +60,7 @@ const Hero = ({
         >
           {parallax ? null : (
             <Image
-              className={`h-full w-full origin-top rounded-bl-large rounded-br-large bg-fixed object-cover`}
+              className={`h-full w-full origin-top rounded-bl-large rounded-br-large bg-scroll object-cover`}
               src={urlFor(image).width(1920).height(1080).url()}
               width={1920}
               height={1080}
