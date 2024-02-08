@@ -50,10 +50,10 @@ const RoundedImageWithText = ({
           variant === "right"
             ? "lg:order-last lg:rounded-l-full"
             : "lg:rounded-r-full"
-        } relative h-full w-full max-w-[380px] overflow-hidden rounded-xl  bg-tw-primary-pink lg:h-[600px] lg:min-h-[600px] lg:max-w-none `}
+        } relative h-full min-h-[300px] w-full max-w-[380px] overflow-hidden rounded-xl  bg-tw-primary-pink lg:h-[600px] lg:min-h-[600px] lg:max-w-none `}
       >
         <Image
-          className="h-full min-h-[300px] w-full object-cover lg:min-h-[600px]"
+          className="h-full  w-full object-cover lg:min-h-[600px]"
           src={urlFor(image).height(600).width(800).url()}
           height={600}
           width={800}
