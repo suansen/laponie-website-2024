@@ -49,8 +49,8 @@ const Hero = ({
           transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
           style={{
             backgroundImage: `url(${urlFor(image)
-              .width(typeof screen !== "undefined" ? screen?.width : 1920)
-              .height(typeof screen !== "undefined" ? screen?.height : 1080)
+              .width(screen?.width)
+              .height(screen?.height)
               .auto("format")
               .url()})`,
           }}
