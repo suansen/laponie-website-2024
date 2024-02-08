@@ -56,7 +56,7 @@ function HeroRounded({ title, subheader1, subheader2, img }: Props) {
         className="relative h-[600px] w-96 -translate-y-20 overflow-hidden rounded-b-full rounded-t-full"
       >
         <Image
-          className="w-full origin-top object-cover opacity-20"
+          className="w-full origin-top object-cover"
           src={urlFor(img).width(390).height(610).url()}
           width={390}
           height={610}
