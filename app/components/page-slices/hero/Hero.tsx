@@ -55,7 +55,7 @@ const Hero = ({
               .url()})`,
           }}
           className={` h-full w-full ${
-            parallax ? "bg-cover bg-fixed bg-center bg-no-repeat" : null
+            parallax ? "bg-auto bg-fixed bg-center bg-no-repeat" : null
           }`}
         >
           {parallax ? null : (
