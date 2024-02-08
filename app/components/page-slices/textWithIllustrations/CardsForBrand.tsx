@@ -26,7 +26,7 @@ const CardsForBrand = ({ brands, languageSelected, buttonText }: Props) => {
           className={`group relative flex flex-col items-center gap-8 overflow-hidden px-8 pb-8 md:min-h-[640px] md:pb-0 `}
         >
           <Image
-            className={`absolute z-0 h-full max-h-[640px] w-full max-w-[640px] origin-top object-cover opacity-80 `}
+            className={`absolute z-0 h-full max-h-[640px] w-full max-w-[640px] origin-top object-cover `}
             src={urlFor(brand.mainImage).width(640).height(640).url()}
             width={640}
             height={640}
