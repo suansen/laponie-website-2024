@@ -101,8 +101,8 @@ const Hero = ({
       )}
 
       <div className="absolute left-1/2 top-1/2 m-auto -translate-x-1/2 -translate-y-1/2 text-center">
-        <div className="bg-white">{screen?.width}</div>
-        <div className="bg-white"> {screen?.height}</div>
+        {/* <div className="bg-white">{screen?.width}</div>
+        <div className="bg-white"> {screen?.height}</div> */}
 
         {heading ? (
           <motion.h2
