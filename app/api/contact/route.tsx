@@ -10,9 +10,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const username = process.env.NEXT_PUBLIC_EMAIL_USERNAME;
-  const password = process.env.NEXT_PUBLIC_EMAIL_PASSWORD;
-  const myEmail = process.env.NEXT_PUBLIC_PERSONAL_EMAIL;
+  const username = process.env.EMAIL_USERNAME_PRIVATE_KEY;
+  const password = process.env.EMAIL_PASSWORD_PRIVATE_KEY;
+  const myEmail = process.env.PERSONAL_EMAIL_PRIVATE_KEY;
 
   const data = await request.json();
 
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       from: username,
       to: myEmail,
       replyTo: data.email,
-      subject: `Website activity from ${data.email}`,
+      subject: `Laponie Enquiry from ${data.email}`,
       html: `
             <p>Name: ${data.name} </p>
             <p>Email: ${data.email} </p>
