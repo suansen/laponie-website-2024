@@ -9,8 +9,10 @@ export async function POST(request: Request) {
 
   try {
     const data = await resend.emails.send({
-      from: "Enquiry <enquiry@resend.dev>",
-      to: ["suansen88@gmail.com"],
+      from: "Enquiry <laponie_enquiry@resend.dev>",
+      to: ["cindy.chew@laponie.com.sg"],
+      cc: ["official@laponie.com.sg"],
+      // to: ["suansen88@gmail.com"],
       subject: `Laponie Enquiry from ${contactFormData.email}`,
       react: EmailTemplate({
         name: contactFormData.name,

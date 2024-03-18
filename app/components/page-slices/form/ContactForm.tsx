@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Input, Textarea } from "@nextui-org/react";
 
 type Props = { languageSelected: string };
 
 const ContactForm = ({ languageSelected }: Props) => {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     tel: "",
     message: "",
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const validateEmail = (value: string) =>
     value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
@@ -18,6 +20,7 @@ const ContactForm = ({ languageSelected }: Props) => {
     e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>,
   ) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const response = await fetch("/api/send", {
@@ -25,20 +28,22 @@ const ContactForm = ({ languageSelected }: Props) => {
         body: JSON.stringify(formData),
       });
 
-      console.log("response", response);
+      // console.log("response", response);
 
       if (!response.ok) {
         console.log("falling over");
         throw new Error(`response status: ${response.status}`);
       }
-      const responseData = await response.json();
-      console.log(responseData["message"]);
+      // const responseData = await response.json();
+      // console.log(responseData["message"]);
 
       alert("Message successfully sent");
       setFormData({ name: "", email: "", tel: "", message: "" });
+      setIsLoading(false);
     } catch (err) {
       console.error(err);
       alert("Error, please try resubmitting the form");
+      setIsLoading(false);
     }
   };
 
@@ -131,6 +136,7 @@ const ContactForm = ({ languageSelected }: Props) => {
         />
         <Button
           type="submit"
+          isDisabled={isLoading}
           size="lg"
           className="w-full max-w-lg bg-tw-primary-pink text-tw-white-off"
         >
