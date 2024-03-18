@@ -30,20 +30,20 @@ export async function POST(request: Request) {
     },
   });
 
-  await new Promise((resolve, reject) => {
-    // verify connection configuration
-    transporter.verify(function (error: any, success: any) {
-      if (error) {
-        console.log(error);
-        reject(error);
-      } else {
-        console.log("Server is ready to take our messages");
-        resolve(success);
-      }
-    });
-  });
-
   try {
+    await new Promise((resolve, reject) => {
+      // verify connection configuration
+      transporter.verify(function (error: any, success: any) {
+        if (error) {
+          console.log(error);
+          reject(error);
+        } else {
+          console.log("Server is ready to take our messages");
+          resolve(success);
+        }
+      });
+    });
+
     const mailOptions = {
       from: username,
       to: myEmail,

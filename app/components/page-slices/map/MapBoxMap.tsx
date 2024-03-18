@@ -43,7 +43,7 @@ const MapBoxMap = ({ latitude, longitude }: Props) => {
           longitude={longitude}
           latitude={latitude}
           color="#A99080"
-          anchor="bottom"
+          anchor="center"
           // style={position:"absolute"}
         />
       </Map>
