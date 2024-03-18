@@ -20,7 +20,7 @@ const ContactForm = ({ languageSelected }: Props) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/send", {
         method: "post",
         body: JSON.stringify(formData),
       });
