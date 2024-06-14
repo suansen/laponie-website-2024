@@ -42,32 +42,34 @@ const Hero = ({
       } `}
     >
       {variant === "full" ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
-          style={{
-            backgroundImage: `url(${urlFor(image)
-              .width(screen?.width)
-              .height(screen?.height)
-              .auto("format")
-              .url()})`,
-          }}
-          className={`h-full w-full ${
-            parallax ? "bg-cover bg-center bg-no-repeat md:bg-fixed" : null
-          }`}
-        >
-          {parallax ? null : (
-            <Image
-              className={`h-full w-full origin-top rounded-bl-large rounded-br-large bg-scroll object-cover`}
-              src={urlFor(image).width(1920).height(1080).url()}
-              width={1920}
-              height={1080}
-              alt={image?.alt || "Hero Image"}
-            />
-          )}
-        </motion.div>
+        image && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0, ease: "easeOut" }}
+            style={{
+              backgroundImage: `url(${urlFor(image)
+                .width(screen?.width)
+                .height(screen?.height)
+                .auto("format")
+                .url()})`,
+            }}
+            className={`h-full w-full ${
+              parallax ? "bg-cover bg-center bg-no-repeat md:bg-fixed" : null
+            }`}
+          >
+            {parallax ? null : (
+              <Image
+                className={`h-full w-full origin-top rounded-bl-large rounded-br-large bg-scroll object-cover`}
+                src={urlFor(image).width(1920).height(1080).url()}
+                width={1920}
+                height={1080}
+                alt={image?.alt || "Hero Image"}
+              />
+            )}
+          </motion.div>
+        )
       ) : variant === "quarter" ? (
         <motion.div
           initial={{ opacity: 0 }}
