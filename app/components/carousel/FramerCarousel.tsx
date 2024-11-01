@@ -32,7 +32,7 @@ const articles = [
 
 export default function FramerCarousel() {
   const containerRef = useRef<HTMLUListElement>(null);
-  const itemsRef = useRef<(HTMLLIElement | null)[]>([]);
+  const itemsRef = useRef<any[]>([]);
   const [activeSlide, setActiveSlide] = useState(START_INDEX);
   const canScrollPrev = activeSlide > 0;
   const canScrollNext = activeSlide < articles.length - 1;
