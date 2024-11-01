@@ -274,9 +274,7 @@ export default function FramerCarousel() {
                 <motion.li
                   layout
                   key={article.title}
-                  ref={(el) =>
-                    (itemsRef.current[index] = el as HTMLLIElement | null)
-                  }
+                  ref={(el) => (itemsRef.current[index] = el as any)}
                   className={cn(
                     "group relative shrink-0 select-none px-3 transition-opacity duration-300",
                     !active && "opacity-30",
