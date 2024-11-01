@@ -32,7 +32,7 @@ const articles = [
 
 export default function FramerCarousel() {
   const containerRef = useRef<HTMLUListElement>(null);
-  const itemsRef = useRef<any[]>([]);
+  const itemsRef = useRef<(HTMLLIElement | null)[]>([]);
   const [activeSlide, setActiveSlide] = useState(START_INDEX);
   const canScrollPrev = activeSlide > 0;
   const canScrollNext = activeSlide < articles.length - 1;
@@ -273,8 +273,10 @@ export default function FramerCarousel() {
               return (
                 <motion.li
                   layout
-                  key={article?.title}
-                  ref={(el) => (itemsRef.current[index] = el)}
+                  key={article.title}
+                  ref={(el) =>
+                    (itemsRef.current[index] = el as HTMLLIElement | null)
+                  }
                   className={cn(
                     "group relative shrink-0 select-none px-3 transition-opacity duration-300",
                     !active && "opacity-30",
